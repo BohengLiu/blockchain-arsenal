@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "target": "es5",
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "es2017",
+      "dom",
+      "esnext"
+    ],
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "plugins": [
+      {
+        "name": "@bazel/tsetse",
+        "disabledRules": [
+          "must-type-assert-json-parse"
+        ]
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "libs/*/src/setupTests.ts",
+    "libs/*/src/**/*.test.ts",
+    "libs/*/src/**/*.test.tsx"
+  ]
+}

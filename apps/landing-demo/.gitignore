@@ -2,18 +2,17 @@
 
 # dependencies
 /node_modules
-**/node_modules
 /.pnp
 .pnp.js
+.pnpm-debug.log
+landing-demo.build.error.log
+landing-demo.build.log
 
 # testing
 /coverage
 
 # production
 /build
-
-**/temp
-common/node_modules
 
 # misc
 .DS_Store

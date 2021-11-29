@@ -15,3 +15,7 @@ npm i -g pnpm
 ```
 rush update
 ```
+4. build common lib
+```
+rush build
+```

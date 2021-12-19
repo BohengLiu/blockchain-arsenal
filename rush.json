@@ -385,6 +385,10 @@
       "projectFolder": "apps/landing-demo"
     },
     {
+      "packageName": "monaco-demo",
+      "projectFolder": "apps/monaco-demo"
+    },
+    {
       "packageName": "@shared/components",
       "projectFolder": "libraries/components"
     }

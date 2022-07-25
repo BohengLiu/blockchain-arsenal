@@ -38,20 +38,24 @@ struct Payment {
 }
 
 interface IPaymentCallback {
-    function onPaymentSuccess(Payment memory payment) external returns (bool);
+    function onPaymentSuccess(
+        address sender,
+        address to,
+        address token,
+        uint256 amount
+    ) external returns (bool);
+
+    function onPaymentSuccess(
+        address sender,
+        address to,
+        address token,
+        uint256 amount,
+        bytes memory data
+    ) external returns (bool);
 }
 
 contract TinyPaymentGateway {
-    function onlyPay(
-        address token,
-        address to,
-        uint256 amount
-    ) public {
-        bool success = IERC20(token).transferFrom(msg.sender, to, amount);
-        require(success, "Payment Fail");
-    }
-
-    function pay(
+    function payAndCall(
         address token,
         address to,
         uint256 amount,
@@ -60,7 +64,30 @@ contract TinyPaymentGateway {
         bool success = IERC20(token).transferFrom(msg.sender, to, amount);
         require(success, "Payment Fail!");
         bool result = IPaymentCallback(callbackContract).onPaymentSuccess(
-            Payment(msg.sender, to, token, amount)
+            msg.sender,
+            to,
+            token,
+            amount
         );
         require(result, "Payment Callback Fail!");
     }
+
+    function payAndCall(
+        address token,
+        address to,
+        uint256 amount,
+        address callbackContract,
+        bytes memory data
+    ) public {
+        bool success = IERC20(token).transferFrom(msg.sender, to, amount);
+        require(success, "Payment Fail!");
+        bool result = IPaymentCallback(callbackContract).onPaymentSuccess(
+            msg.sender,
+            to,
+            token,
+            amount,
+            data
+        );
+        require(result, "Payment Callback Fail!");
+    }
+}
